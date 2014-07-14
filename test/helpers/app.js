@@ -67,7 +67,6 @@ function getApp(options) {
   });
 
   app.get("/header/:name", function(req, res) {
-    console.log("Server headers got: ", req.headers);
     if ((req.params.name in req.headers)) {
       res.json({
         name: req.params.name,
