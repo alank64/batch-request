@@ -9,7 +9,7 @@ var _ = require('lodash'),
     methods = require('methods'),
     request = require('supertest');
 
-describe('request options', function() {
+describe('request options forced', function() {
   var app;
 
   before(function(done) {
@@ -28,8 +28,8 @@ describe('request options', function() {
     app.server.close(done);
   });
 
-  describe('forced json true', function() {
-      it('Header contains content-type application/json even if json:false', function(done) {
+  describe('json true/false', function() {
+      it('attempts false Header contains content-type application/json', function(done) {
           request(app)
               .post('/batch')
               .send({
@@ -55,7 +55,7 @@ describe('request options', function() {
               });
       });
 
-      it('Header contains content-type application/json even if not defined', function(done) {
+      it('is not defined Header contains content-type application/json', function(done) {
           request(app)
               .post('/batch')
               .send({
@@ -103,8 +103,8 @@ describe('request options not forced', function() {
     app.server.close(done);
   });
 
-  describe('forced json false', function() {
-    it('Header not contains content-type application/json as defined', function(done) {
+  describe('json true/false', function() {
+    it('request set false Header does not contain content-type application/json', function(done) {
       request(app)
         .post('/batch')
         .send({
@@ -124,7 +124,7 @@ describe('request options not forced', function() {
         });
     });
 
-    it('Header contains content-type application/json as defined', function(done) {
+    it('request set true Header contains content-type application/json', function(done) {
       request(app)
         .post('/batch')
         .send({
